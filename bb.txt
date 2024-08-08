@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<bool> horizontal_asphalted(n + 1, false);
+    vector<bool> vertical_asphalted(n + 1, false);
+    vector<int> asphalt_days;
+
+    for (int i = 1; i <= n * n; ++i) {
+        int hi, vi;
+        cin >> hi >> vi;
+        
+        if (!horizontal_asphalted[hi] && !vertical_asphalted[vi]) {
+            asphalt_days.push_back(i);
+            horizontal_asphalted[hi] = true;
+            vertical_asphalted[vi] = true;
+        }
+    }
+
+    for (int day : asphalt_days) {
+        cout << day << " ";
+    }
+
+    return 0;
+}

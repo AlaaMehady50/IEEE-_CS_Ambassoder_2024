@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, m, a, b;
+    cin >> n >> m >> a >> b;
+
+
+    int cost_single = n * a;
+    int num_tickets_only_multiple = (n + m - 1) / m;
+    int cost_multiple_only = num_tickets_only_multiple * b;
+
+    int num_tickets_mixed = n / m;
+    int remaining_rides = n % m;
+    int cost_mixed = num_tickets_mixed * b + remaining_rides * a;
+
+    int min_cost = min(cost_single, min(cost_multiple_only, cost_mixed));
+
+    cout << min_cost << endl;
+
+    return 0;
+}
