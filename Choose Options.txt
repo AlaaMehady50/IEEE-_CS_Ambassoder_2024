@@ -1,0 +1,59 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+bool checkColumn(const vector<string>& table, int col, int rows) {
+    for (int row = 0; row < rows; ++row) {
+        if (table[row][col] != 'X') {
+            return false;
+        }
+    }
+    return true;
+}
+
+vector<pair<int, int>> processTest(const string& cards) {
+    vector<pair<int, int>> result;
+    int pairs[6][2] = {{1, 12}, {2, 6}, {3, 4}, {4, 3}, {6, 2}, {12, 1}};
+    
+    for (auto [a, b] : pairs) {
+        vector<string> table(a);
+        for (int i = 0; i < a; ++i) {
+            table[i] = cards.substr(i * b, b);
+        }
+        
+        bool win = false;
+        for (int col = 0; col < b; ++col) {
+            if (checkColumn(table, col, a)) {
+                win = true;
+                break;
+            }
+        }
+        
+        if (win) {
+            result.emplace_back(a, b);
+        }
+    }
+    
+    return result;
+}
+
+int main() {
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        string cards;
+        getline(cin, cards);
+        
+        vector<pair<int, int>> valid_pairs = processTest(cards);
+        
+        cout << valid_pairs.size();
+        for (const auto& [a, b] : valid_pairs) {
+            cout << " " << a << "x" << b;
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}

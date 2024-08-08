@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include <set>
+using namespace std;
+
+bool hasUniqueDigits(int year) {
+    string year_str = to_string(year);
+    set<char> digits(year_str.begin(), year_str.end());
+    return digits.size() == year_str.length();
+}
+
+int main() {
+    int y;
+    cin >> y;
+ 
+    int next_year = y + 1;
+
+    while (!hasUniqueDigits(next_year)) {
+        ++next_year;
+    }
+    
+
+    cout << next_year << endl;
+    
+    return 0;
+}

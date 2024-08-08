@@ -1,0 +1,21 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int lcm(int a, int b) {
+    return (a / gcd(a, b)) * b;
+}
+
+int main() {
+    int n, m, z;
+    cin >> n >> m >> z;
+
+    int lcm_value = lcm(n, m);
+  
+    int number_of_overlaps = z / lcm_value;
+  
+    cout << number_of_overlaps << endl;
+    
+    return 0;
+}
